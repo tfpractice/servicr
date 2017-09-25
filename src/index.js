@@ -1,1 +1,5 @@
-export { default as movies } from './movies';
+require('babel-core/register')({});
+require('babel-polyfill');
+require('./movies');
+
+// const movies = require('./movies');

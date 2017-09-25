@@ -1,4 +1,4 @@
-import Movie from '../model';
+import Movie from './model';
 
 /**
  * Get all reviews

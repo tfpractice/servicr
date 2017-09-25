@@ -1,7 +1,8 @@
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import express from 'express';
-import flash from 'express-flash';
+
+// import flash from 'express-flash';
 import mongoose from 'mongoose';
 
 import path from 'path';
@@ -11,7 +12,7 @@ import { enableHotReload, PATHS } from 'config';
 // import { Strategy as LocalStrategy } from 'passport-local';
 //
 // import { enableHotReload, PATHS } from 'config';
-import { dbConfig } from '../models';
+// import { dbConfig } from '../models';
 import MovieRoutes from './routes';
 
 // import { requestHandler } from './request_handler';
