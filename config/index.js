@@ -1,1 +1,1 @@
-export { enableHotReload, common, PATHS, } from './webpack';
+export { enableHotReload, common, PATHS } from './webpack';

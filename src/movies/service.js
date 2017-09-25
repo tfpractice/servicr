@@ -5,6 +5,7 @@ import flash from 'express-flash';
 import mongoose from 'mongoose';
 
 import path from 'path';
+import { enableHotReload, PATHS } from 'config';
 
 // import session from 'express-session';
 // import { Strategy as LocalStrategy } from 'passport-local';
@@ -15,29 +16,21 @@ import MovieRoutes from './routes';
 
 // import { requestHandler } from './request_handler';
 
-mongoose.Promise = global.Promise;
-
-// MongoDB Connection
-mongoose.connect(dbConfig.mongoURL, (error) => {
-  if (error) {
-    console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
-    throw error;
-  }
-
-  console.log('mongoose connected');
+const promise = mongoose.connect('mongodb://localhost/movieService', {
+  useMongoClient: true,
+  replset: { rs_name: 'movieServiceRS' },
 });
 
-//
-// const conn = mongoose.connection;
-//
-// conn.on('error', console.error.bind(console, 'connection error:'));
-// conn.once('open', () => {
-//   console.log('mongoose connected from conn variable');
-// });
+// MongoDB Connection
+promise.then(() => console.log('dbconnected')).catch((e) => {
+  console.error('there was an error');
+  throw error;
+});
 
 // initialize express
-// const app = enableHotReload(express());
-const app = express();
+const app = enableHotReload(express());
+
+// const app /= express();
 
 // BodyParser Middleware
 
