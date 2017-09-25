@@ -4,7 +4,11 @@
   "description": "micorservice sample",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack  --progress --color --env.prod -p --config ./config/webpack/config.babel.js",
+    "dev": "node .",
+    "deploy": "yarn build && surge dist tfp-filmratr.surge.sh",
+    "lint": "./node_modules/.bin/eslint  --fix -c .eslintrc.js . --ext .js --ignore-path .gitignore --cache",
+    "test": "jest --env=jsdom"
   },
   "author": "theory f practice <jackson.brebnor@gmail.com>",
   "license": "ISC",
