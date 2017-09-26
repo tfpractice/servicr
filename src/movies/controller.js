@@ -54,7 +54,3 @@ export const deleteMovie = (req, res) => {
     .then(movie => res.json({ movie }))
     .catch(err => res.status(500).send(err));
 };
-
-// export const deleteUnclaimed = (req, res) => Movie.dropAll();
-
-// deleteUnclaimed();
