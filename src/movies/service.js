@@ -1,37 +1,37 @@
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import express from 'express';
+import morgan from 'morgan';
+import helmet from 'helmet';
 
-// import flash from 'express-flash';
 import mongoose from 'mongoose';
 
 import path from 'path';
 import { enableHotReload, PATHS } from 'config';
-
-// import session from 'express-session';
-// import { Strategy as LocalStrategy } from 'passport-local';
-//
-// import { enableHotReload, PATHS } from 'config';
-// import { dbConfig } from '../models';
 import MovieRoutes from './routes';
 
 // import { requestHandler } from './request_handler';
 
-const promise = mongoose.connect('mongodb://localhost/movieService', {
+const promise = mongoose.connect('mongodb://localhost:27017/movieService', {
   useMongoClient: true,
-  replset: { rs_name: 'movieServiceRS' },
+
+  replicaSe: 'movieServiceRS',
+
+  // replset: {},
 });
 
 // MongoDB Connection
-promise.then(() => console.log('dbconnected')).catch((e) => {
-  console.error('there was an error');
-  throw error;
+promise.then(db => console.log('dbconnected', db)).catch((e) => {
+  console.error('there was an error', e.message);
+  throw e;
 });
 
 // initialize express
 const app = enableHotReload(express());
 
 // const app /= express();
+app.use(morgan('dev'));
+app.use(helmet());
 
 // BodyParser Middleware
 
@@ -42,13 +42,13 @@ app.use(cookieParser());
 // Set Static Folder
 
 // Express Session
-app.use(
-  session({
-    secret: process.env.FILMRATR_AUTH_SECRET,
-    saveUninitialized: true,
-    resave: true,
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.FILMRATR_AUTH_SECRET,
+//     saveUninitialized: true,
+//     resave: true,
+//   })
+// );
 
 // Global Vars
 // app.use((req, res, next) => {

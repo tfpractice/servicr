@@ -10,7 +10,7 @@ export default (env = defEnvar) => ({
   entry: { app: PATHS.app },
   resolve: {
     modules: [ 'node_modules' ],
-    extensions: [ '.js', '.jsx', '.json', '' ],
+    extensions: [ '.js', '.jsx', '.json' ],
     alias: {
       imports: PATHS.imports,
       config: PATHS.config,
@@ -29,7 +29,8 @@ export default (env = defEnvar) => ({
         exclude: /node_modules/,
         loaders: [ 'babel-loader' ],
       },
-      { test: /\.json$/, loader: 'json-loader' },
+
+      // { test: /\.json$/, loader: 'json-loader' },
     ],
   },
   devtool: env.prod ? 'source-map' : 'eval',

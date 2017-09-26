@@ -20,7 +20,7 @@ export const getMovies = (req, res) =>
  * @returns void
  */
 export const addMovie = (req, res) =>
-  Movie.create({ ...req.body })
+  Movie.create(req.body)
     .then(movie => res.json({ movie }))
     .catch(err => res.status(500).send(err));
 
