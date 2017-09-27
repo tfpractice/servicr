@@ -13,3 +13,5 @@ COPY . /usr/src/app
  
 EXPOSE 3000
 CMD [ "yarn", "dev" ]
+# docker run -v ./:/usr/src/app -it :test
+# $ docker build -t tfpractice/servicr .
