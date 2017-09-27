@@ -9,6 +9,7 @@ import path from 'path';
 import { enableHotReload, PATHS } from 'config';
 import MovieRoutes from './routes';
 
+mongoose.Promise = global.Promise;
 const dbOpts = {
   useMongoClient: true,
   replicaSet: 'movieServiceRS',
@@ -37,4 +38,5 @@ app.use(express.static(path.resolve('dist')));
 app.listen(3000, () => {
   console.log('Filmratr listening on port 3000!');
 });
+
 export default app;
