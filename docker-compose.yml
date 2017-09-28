@@ -5,10 +5,10 @@ services:
     ports:
       - "27017:27017"
   web:
-    image: node
+    # image: servicr
     build: .
     volumes:
-      ./:/app  
+      - ./:/app  
     ports:
       - "3000:3000"
     links:

@@ -12,7 +12,8 @@ import MovieRoutes from './routes';
 mongoose.Promise = global.Promise;
 const dbOpts = {
   useMongoClient: true,
-  replicaSet: 'movieServiceRS',
+
+  // replicaSet: 'movieServiceRS',
 };
 
 const promise = mongoose.connect('mongodb://localhost/movieService', dbOpts);
