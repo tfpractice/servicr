@@ -9,18 +9,20 @@ import path from 'path';
 import { enableHotReload, PATHS } from 'config';
 import MovieRoutes from './routes';
 
-mongoose.Promise = global.Promise;
+const DB_URL = process.env.DB_URL || 'mongodb://localhost/movieService';
 const dbOpts = {
   useMongoClient: true,
-
-  // replicaSet: 'movieServiceRS',
+  promiseLibrary: global.Promise,
 };
 
-const promise = mongoose.connect('mongodb://localhost/movieService', dbOpts);
+// const promise = mongoose.connect('mongodb://localhost/movieService', dbOpts);
+
+const promise = mongoose.connect(DB_URL, dbOpts);
+
+// const promise = mongoose.connect('mongodb://db/movieService', dbOpts);
 
 promise.then(db => console.log('dbconnected')).catch((e) => {
-  console.error('there was an error', e.message);
-  throw e;
+  console.error('there was an error', e);
 });
 
 const app = enableHotReload(express());

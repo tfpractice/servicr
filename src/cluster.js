@@ -28,3 +28,8 @@
 // process.on('message', (msg) => {
 //   console.log(`Message from master: ${msg}`);
 // });
+
+// docker run -d -p 27017:27017 -v .:/data/db mongo
+
+// ec82c13073bd  d7d0cf57747d        mongo               "docker-entrypoint..."   9 seconds ago       Up 8 seconds        0.0.0.0:27017->27017/tcp   angry_shirley
+//  mongo               "do/cker-entrypoint..."   11 minutes ago      Up 11 minutes       27017/tcp                  db

@@ -11,7 +11,7 @@ WORKDIR /app
 # Bundle app source
 # COPY . /usr/src/app
  
-# EXPOSE 3000
+# EXPOSE 3000 27017
 # CMD [ "yarn", "dev" ]
 # docker run -v $(pwd)/:/app -it servicr
 # $ docker build -t tfpractice/servicr .

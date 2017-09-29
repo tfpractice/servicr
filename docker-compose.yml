@@ -1,18 +1,16 @@
 version: "3"
 services:
-  db:
-    image: mongo
-    ports:
-      - "27017:27017"
   web:
-    # image: servicr
+    environment:
+    - DB_URL=mongodb://servicr_microdb_1/movieService
+    image: servicr
     build: .
     volumes:
       - ./:/app  
     ports:
       - "3000:3000"
     links:
-      - db
+      - microdb
     command: "yarn dev"
     # replace username/repo:tag with your name and image details
     # deploy:
@@ -24,7 +22,16 @@ services:
     #   restart_policy:
     #     condition: on-failure
 
-    networks:
-      - webnet
-networks:
-  webnet:
+
+  microdb:
+    image: mongo
+    # container_name: db
+    # command: 'mongod'
+    # volumes:
+    #   - ./:/data/db  
+    ports:
+      - "27017:27017"
+
+    
+# volumes:
+#   db:
