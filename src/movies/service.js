@@ -15,11 +15,7 @@ const dbOpts = {
   promiseLibrary: global.Promise,
 };
 
-// const promise = mongoose.connect('mongodb://localhost/movieService', dbOpts);
-
 const promise = mongoose.connect(DB_URL, dbOpts);
-
-// const promise = mongoose.connect('mongodb://db/movieService', dbOpts);
 
 promise.then(db => console.log('dbconnected')).catch((e) => {
   console.error('there was an error', e);
