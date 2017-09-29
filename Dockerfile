@@ -1,5 +1,5 @@
 FROM node
- 
+
 # Create app directory
 # RUN mkdir -p /app
 WORKDIR /app

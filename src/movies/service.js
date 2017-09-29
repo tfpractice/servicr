@@ -5,15 +5,14 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
 import path from 'path';
-
 import { enableHotReload, PATHS } from 'config';
+
+import * as scrape from './scrape';
 import MovieRoutes from './routes';
 
+mongoose.Promise = global.Promise;
 const DB_URL = process.env.DB_URL || 'mongodb://localhost/movieService';
-const dbOpts = {
-  useMongoClient: true,
-  promiseLibrary: global.Promise,
-};
+const dbOpts = { useMongoClient: true };
 
 const promise = mongoose.connect(DB_URL, dbOpts);
 
@@ -37,5 +36,7 @@ app.use(express.static(path.resolve('dist')));
 app.listen(3000, () => {
   console.log('Filmratr listening on port 3000!');
 });
+
+// scrape.search();
 
 export default app;
