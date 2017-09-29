@@ -12,26 +12,7 @@ services:
     links:
       - microdb
     command: "yarn dev"
-    # replace username/repo:tag with your name and image details
-    # deploy:
-    #   replicas: 5
-    #   resources:
-    #     limits:
-    #       cpus: "0.1"
-    #       memory: 50M
-    #   restart_policy:
-    #     condition: on-failure
-
-
   microdb:
     image: mongo
-    # container_name: db
-    # command: 'mongod'
-    # volumes:
-    #   - ./:/data/db  
     ports:
       - "27017:27017"
-
-    
-# volumes:
-#   db:
