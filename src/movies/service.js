@@ -5,6 +5,8 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
 import path from 'path';
+import axios from 'axios';
+
 import { enableHotReload, PATHS } from 'config';
 
 import * as scrape from './scrape';
