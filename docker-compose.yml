@@ -1,0 +1,25 @@
+version: "3"
+services:
+  servicr:
+    environment:
+    - DB_URL=mongodb://servicr_microdb_1/movieService
+    - MOVIE_DB_API_KEY
+    image: servicr
+    build: .
+    volumes:
+      - ./:/app  
+    ports:
+      - 3000
+      - 80
+      # - "80:80"
+      - "443:3000"
+      - "80:3000"
+      - "3000:3000"
+      # - "3000:80"
+    links:
+      - microdb
+    command: "yarn dev"
+  microdb:
+    image: mongo
+    ports:
+      - 27017

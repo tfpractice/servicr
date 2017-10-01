@@ -3,3 +3,5 @@ dist
 dump
 .eslintcache
 *.log
+config/ssl
+*ssl
