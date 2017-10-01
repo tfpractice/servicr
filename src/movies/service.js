@@ -6,8 +6,8 @@ import helmet from 'helmet';
 import mongoose from 'mongoose';
 import path from 'path';
 import axios from 'axios';
-
-import { enableHotReload, PATHS } from 'config';
+import spdy from 'spdy';
+import { cert, enableHotReload, key, PATHS } from 'config';
 
 import * as scrape from './scrape';
 import MovieRoutes from './routes';
@@ -35,10 +35,28 @@ app.use('/api', MovieRoutes);
 
 app.use(express.static(path.resolve('dist')));
 
-app.listen(3000, () => {
-  console.log('Filmratr listening on port 3000!');
+const server = spdy.createServer({ key, cert }, app).listen(3000, (e) => {
+  if (e) {
+    console.error('spdy error', e.message);
+  }
+
+  console.log(' http2 Servicr listening on port 3000!');
 });
 
-// scrape.search();
+// })
+// server.listen(3000, () => {
+//   console.log('Filmratr listening on port 3000!');
+// });
+//
+// server.start({
+//   port: 3000,
+//
+//   // here we pass the ssl options to the server.js file
+//   ssl: { key, cert },
+//
+//   // repo
+// });
 
-export default app;
+// app.listen(3000, e => console.log('listentin'));
+scrape.local();
+export default server;
