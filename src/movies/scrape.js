@@ -16,4 +16,4 @@ export const search = ({ title: query } = { title: 'matrix' }) =>
     .then(add)
     .catch(console.error);
 
-// axios.get('/').then(console.log);
+export const local = () => axios.get('/').then(console.log);
