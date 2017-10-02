@@ -48,6 +48,7 @@
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.5",
+    "faker": "^4.1.0",
     "fenugreek-collections": "^1.2.0-0",
     "helmet": "^3.8.1",
     "material-ui": "^1.0.0-beta.12",
