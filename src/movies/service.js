@@ -7,9 +7,9 @@ import mongoose from 'mongoose';
 import path from 'path';
 import axios from 'axios';
 import spdy from 'spdy';
+
 import { cert, enableHotReload, key, PATHS } from 'config';
 
-import * as scrape from './scrape';
 import MovieRoutes from './routes';
 
 mongoose.Promise = global.Promise;
@@ -34,29 +34,13 @@ app.use(cookieParser());
 app.use('/api', MovieRoutes);
 
 app.use(express.static(path.resolve('dist')));
+const sopts = { spdy: { plain: true }};
+const server = spdy
+  .createServer({ key, cert, spdy: { plain: true }}, app)
+  .listen(3000, (e) => {
+    if (e) {
+      console.error('server error', e.message);
+    }
+  });
 
-const server = spdy.createServer({ key, cert }, app).listen(3000, (e) => {
-  if (e) {
-    console.error('spdy error', e.message);
-  }
-
-  console.log(' http2 Servicr listening on port 3000!');
-});
-
-// })
-// server.listen(3000, () => {
-//   console.log('Filmratr listening on port 3000!');
-// });
-//
-// server.start({
-//   port: 3000,
-//
-//   // here we pass the ssl options to the server.js file
-//   ssl: { key, cert },
-//
-//   // repo
-// });
-
-// app.listen(3000, e => console.log('listentin'));
-scrape.local();
 export default server;
