@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+import faker from 'faker';
 
 const RoomSchema = new Schema(
   {
@@ -20,3 +21,15 @@ RoomSchema.statics.dropAll = function() {
 const Room = mongoose.model('Room', RoomSchema);
 
 export default Room;
+
+export const fakeRoom = () => ({
+  name: faker.random.number(200),
+  shows: [],
+});
+
+export const seedRooms = (num = 5) => {
+  const inserted = [ ...Array(num).keys() ].map(fakeRoom);
+
+  console.log('inserted', inserted);
+  return Room.create(inserted);
+};

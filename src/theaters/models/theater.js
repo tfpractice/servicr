@@ -1,6 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
 import faker from 'faker';
 
+import { seedRooms } from './room';
+
 const TheaterSchema = new Schema(
   {
     name: { type: String, default: 'theaterName' },
@@ -33,3 +35,14 @@ export const seedTheaters = (num = 5) => {
   console.log('inserted', inserted);
   return Theater.create(inserted);
 };
+
+export const setRooms = rooms => theater => theater.update({ rooms });
+export const updateTheaters = () =>
+  Theater.find()
+    .exec()
+    .then((trs) => {
+      console.log('trs', trs);
+      return Promise.all(
+        trs.map(t => seedRooms().then(rms => setRooms(rms)(t)))
+      );
+    });
