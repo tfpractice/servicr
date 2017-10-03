@@ -2,7 +2,6 @@ import mongoose, { Schema } from 'mongoose';
 
 const RoomSchema = new Schema(
   {
-    id: { type: String, required: true },
     capacity: { type: Number, default: 200 },
     theater: { type: Schema.Types.ObjectId, ref: 'Theater' },
     shows: [{ type: Schema.Types.ObjectId, ref: 'Show' }],

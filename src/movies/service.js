@@ -34,6 +34,8 @@ app.use(cookieParser());
 app.use('/api', MovieRoutes);
 
 app.use(express.static(path.resolve('dist')));
+app.get('*', (req, res) => res.send("'movies'"));
+
 const sopts = { spdy: { plain: true }};
 const server = spdy
   .createServer({ key, cert, spdy: { plain: true }}, app)

@@ -3,9 +3,8 @@ import faker from 'faker';
 
 const TheaterSchema = new Schema(
   {
-    id: { type: String, required: true },
-    name: { type: String, default: 'default review text' },
-    city: { type: Date, default: Date.now() },
+    name: { type: String, default: 'theaterName' },
+    city: { type: String, default: 'Brooklyn' },
     rooms: [{ type: Schema.Types.ObjectId, ref: 'Room' }],
   },
   { toObject: { virtuals: true }, toJSON: { virtuals: true }}
@@ -28,5 +27,9 @@ export const fakeTheater = () => ({
   rooms: [],
 });
 
-export const w = (num = 5) =>
-  Theater.create([ ...Array(5).keys() ].map(fakeTheater));
+export const seedTheaters = (num = 5) => {
+  const inserted = [ ...Array(5).keys() ].map(fakeTheater);
+
+  console.log('inserted', inserted);
+  return Theater.create(inserted);
+};

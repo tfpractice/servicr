@@ -8,11 +8,11 @@ import path from 'path';
 import axios from 'axios';
 import spdy from 'spdy';
 
-import { seedTheaters } from './models/theater';
+import { fakeTheater, seedTheaters } from './models/theater';
 import { cert, enableHotReload, key, PATHS } from 'config';
 
 // import MovieRoutes from './routes';
-
+console.log('fakeTheater()', fakeTheater());
 mongoose.Promise = global.Promise;
 const DB_URL = process.env.DB_URL || 'mongodb://localhost/theaters';
 const dbOpts = { useMongoClient: true };
@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(cookieParser());
 
 // app.use('/api', MovieRoutes);
-
+app.get('/', (req, res) => res.send("'theaters'"));
 app.use(express.static(path.resolve('dist')));
 const sopts = { spdy: { plain: true }};
 
@@ -45,4 +45,7 @@ const server = spdy
     }
   });
 
+seedTheaters()
+  .then(console.log)
+  .catch(err => console.error('db error', err.message));
 export default server;

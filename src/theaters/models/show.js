@@ -2,11 +2,10 @@ import mongoose, { Schema } from 'mongoose';
 
 const ShowSchema = new Schema(
   {
-    id: { type: String, required: true },
     time: { type: Date, default: Date.now() },
     price: { type: Number, default: 200 },
     theater: { type: Schema.Types.ObjectId, ref: 'Theater' },
-    movie_id: { type: Schema.Types.ObjectId, ref: 'Movie' },
+    movie: { type: Schema.Types.ObjectId, ref: 'Movie' },
     seats_available: [{ type: Number }],
     seats_taken: [{ type: Number }],
   },
