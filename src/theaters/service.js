@@ -45,5 +45,4 @@ const server = spdy
     }
   });
 
-seedTheaters().then(console.log);
 export default server;
